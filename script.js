@@ -58,3 +58,16 @@ const incrementValue = (id, value) => {
 const decrementValue = (id, value) => {
     store.dispatch(decrementAction(id, value));
 };
+
+// render function to update UI
+const render = () => {
+    const state = store.getState();
+    Object.keys(state).map(
+        (c, i) =>
+            (document.querySelector(`#count${i + 1}-value`).innerText =
+                state[c])
+    );
+};
+
+// Redux subscriber to listen state change
+store.subscribe(render);
