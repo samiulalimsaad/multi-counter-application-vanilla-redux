@@ -59,6 +59,11 @@ const decrementValue = (id, value) => {
     store.dispatch(decrementAction(id, value));
 };
 
+// Reset all value to initialState
+resetCounterContainerEl.onclick = () => {
+    store.dispatch(resetAction());
+};
+
 // render function to update UI
 const render = () => {
     const state = store.getState();
