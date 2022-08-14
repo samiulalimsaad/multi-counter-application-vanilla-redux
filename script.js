@@ -7,6 +7,10 @@ const resetCounterContainerEl = document.querySelector(
 
 // event listener for add counter button
 addCounterContainerEl.onclick = () => {
+    // set random value for increment and decrement
+    const randomInc = Math.round(Math.random() * 15 + 1);
+    const randomDec = Math.round(Math.random() * 5 + 1);
+
     const elArray = counterContainerEl.children;
     const template = counterContainerEl.innerHTML;
 
@@ -25,12 +29,18 @@ addCounterContainerEl.onclick = () => {
                     <div class="flex space-x-3">
                         <button
                             id="increment${elArray.length + 1}"
+                            onclick="incrementValue(${
+                                elArray.length + 1
+                            },${randomInc})"
                             class="bg-indigo-400 text-white px-3 py-2 rounded shadow"
                         >
                             Increment (+${randomInc})
                         </button>
                         <button
                             id="decrement${elArray.length + 1}"
+                            onclick="decrementValue(${
+                                elArray.length + 1
+                            },${randomDec})"
                             class="bg-red-400 text-white px-3 py-2 rounded shadow"
                         >
                             Decrement (-${randomDec})
@@ -38,4 +48,13 @@ addCounterContainerEl.onclick = () => {
                     </div>
                 </div>
                 `;
+};
+
+// dispatcher functions
+const incrementValue = (id, value) => {
+    store.dispatch(incrementAction(id, value));
+};
+
+const decrementValue = (id, value) => {
+    store.dispatch(decrementAction(id, value));
 };
